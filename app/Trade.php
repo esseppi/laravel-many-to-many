@@ -46,12 +46,12 @@ class Trade extends Model
     {
         return $this->belongsTo(Coin::class, 'foreignCoin_id');
     }
-    // public function coin()
+    // public function user()
     // {
-    //     return $this->belongsTo('App\Coin', 'coin_id');
+    //     return $this->belongsTo('App\User', 'user_id');
     // }
-    public function user()
+    public function wallet()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo(Wallet::class, 'wallet_id');
     }
 }
