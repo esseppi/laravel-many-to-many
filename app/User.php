@@ -38,9 +38,13 @@ class User extends Authenticatable
     ];
 
     // MIE FUNZIONI
-
-    public function tradeUser()
+    public function wallet()
     {
-        return $this->hasMany('App\Trade', 'user_id');
+        return $this->hasOne(Wallet::class, 'wallet_id');
     }
+
+    // public function tradeUser()
+    // {
+    //     return $this->hasMany('App\Trade', 'user_id');
+    // }
 }

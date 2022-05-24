@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
     public function run(Faker $faker)
     {
         User::create([
-            'name'          => 'Saso Prati',
+            'name'          => 'Saso',
             'email'         => 'esseppi@tutanota.com',
             'password'      => Hash::make('asdasd'),
         ]);

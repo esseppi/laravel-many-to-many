@@ -1,9 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\wallet;
+use App\Wallet;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use App\Trade;
+use App\Coin;
+use App\User;
 
 class WalletController extends Controller
 {
@@ -41,10 +47,10 @@ class WalletController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\wallet  $wallet
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function show(wallet $wallet)
+    public function show(Wallet $wallet)
     {
         //
     }
@@ -52,10 +58,10 @@ class WalletController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\wallet  $wallet
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function edit(wallet $wallet)
+    public function edit(Wallet $wallet)
     {
         //
     }
@@ -64,10 +70,10 @@ class WalletController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\wallet  $wallet
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, wallet $wallet)
+    public function update(Request $request, Wallet $wallet)
     {
         //
     }
@@ -75,10 +81,10 @@ class WalletController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\wallet  $wallet
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(wallet $wallet)
+    public function destroy(Wallet $wallet)
     {
         //
     }
