@@ -6,6 +6,7 @@ use Faker\Generator as Faker;
 use App\Trade;
 use App\User;
 use App\Coin;
+use App\Wallet;
 use Illuminate\Support\Facades\Http;
 
 class TradeSeeder extends Seeder
@@ -15,13 +16,13 @@ class TradeSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker, Coin $coin)
+    public function run(Faker $faker)
     {
         $coins = Coin::all()->count();
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < $coins; $i++) {
 
-            $user = User::inRandomOrder()->first();
+            $wallet = Wallet::inRandomOrder()->first();
             $coin1 = Coin::inRandomOrder()->first();
             $coin2 = Coin::inRandomOrder()->first();
             $amountExchanged = $faker->numberBetween(0, 100);
@@ -37,10 +38,10 @@ class TradeSeeder extends Seeder
             $data1 = Http::get($link1)->json();
             $data2 = Http::get($link2)->json();
 
-            $tradeSlug =  $coin1->name . $user->id . $coin2->name;
+            $tradeSlug =  $coin1->name . $wallet->id . $coin2->name;
             Trade::create([
-                'user_id'        => $user->id,
                 'baseCoin_id'    => $coin1->id,
+                'wallet_id'      => $wallet->id,
                 'foreignCoin_id' => $coin2->id,
                 'date'           => $date,
                 'basePrice'      => $faker->numberBetween(0, 10000),

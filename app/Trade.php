@@ -10,14 +10,14 @@ class Trade extends Model
 {
     public $timestamps = null;
     protected $fillable = [
-        "baseCoin_id",
         "foreignCoin_id",
-        "user_id",
+        "baseCoin_id",
         "date",
         "slug",
         "basePrice",
         "foreignPrice",
         "baseAmount",
+        "wallet_id",
         "foreignAmount",
         "tradeDir",
         "comments",
@@ -52,6 +52,6 @@ class Trade extends Model
     // }
     public function wallet()
     {
-        return $this->belongsTo(Wallet::class, 'wallet_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 }

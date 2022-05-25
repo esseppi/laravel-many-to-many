@@ -29,7 +29,7 @@ class CreateTradesTable extends Migration
             $table->boolean('tradeDir');
             $table->text('comments')->nullable();
 
-            $table->foreign('wallet_id')->references('id')->on('wallet');
+            $table->foreign('wallet_id')->references('id')->on('wallets');
             $table->foreign('baseCoin_id')->references('id')->on('coins');
             $table->foreign('foreignCoin_id')->references('id')->on('coins');
         });

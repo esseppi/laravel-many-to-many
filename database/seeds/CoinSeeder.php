@@ -17,40 +17,9 @@ class CoinSeeder extends Seeder
 
     public function run()
     {
-        // CREAZIONE COIN SINGOLA
-        // $Coinlist = Http::get('https://api.coingecko.com/api/v3/coins/bitcoin')->json();
-        // Coin::create([
-        //     "price_usd"   => $Coinlist['market_data']['current_price']['usd'],
-        //     "name"        => $Coinlist['name'],
-        //     "image"       => $Coinlist['image']['thumb'],
-        // ]);
-
-        // CREAZIONE MULTIPLA COIN
-        // $Coinlist = Http::get('https://api.coingecko.com/api/v3/simple/supported_vs_currencies')->json();
-        // for ($i = 0; $i < 10; $i++) {
-        //     Coin::create([
-        //         "price_usd"   => $Coinlist['market_data']['current_price']['usd'],
-        //         "name"        => $Coinlist['name'],
-        //         "image"       => $Coinlist['image']['thumb'],
-        //     ]);
-        // };
-
-        // $total = Http::get($link)->json();
-
-        // for ($i = 0; $i < count($total); $i++) {
-        //     $coin = $total[$i];
-        //     Coin::create([
-        //         "description" => $coin['description']['it'],
-        //         "name"        => $coin['name'],
-        //         "image"       => $coin['image']['large'],
-        //         "slug"        => Coin::generateSlug($coin['name'])
-        //     ]);
-        // };
-
-
         // SELEZIONA LE COINS INIZIAL SPECIFICANDO IL NOME NELL'ARRAY initialCoins
         $link = 'https://api.coingecko.com/api/v3/coins/';
-        $initialCoins = ['bitcoin', 'ethereum', 'polkadot',];
+        $initialCoins = ['bitcoin', 'ethereum', 'tether', 'polkadot', 'monero', 'dash', 'uniswap', 'tron', 'frax'];
         for ($i = 0; $i < count($initialCoins); $i++) {
             $word = strtolower($initialCoins[$i]);
             $coin = Http::get($link . $word)->json();

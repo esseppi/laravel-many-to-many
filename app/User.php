@@ -40,7 +40,7 @@ class User extends Authenticatable
     // MIE FUNZIONI
     public function wallet()
     {
-        return $this->hasOne(Wallet::class, 'wallet_id');
+        return $this->hasOne(Wallet::class, 'user_id');
     }
 
     // public function tradeUser()

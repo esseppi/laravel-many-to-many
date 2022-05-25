@@ -19,7 +19,7 @@ class CreateCoinsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('slug');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

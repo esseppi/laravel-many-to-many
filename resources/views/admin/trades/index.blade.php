@@ -75,7 +75,7 @@
                     </div>
                     <div class="ms-3 d-flex justify-content-between">
                         <small>{{ $trade->baseAmount }}|{{ $trade->baseCoin->name }}|Exchanged</small>
-                        <small>{{ $trade->user->name }}</small>
+                        {{-- <small>{{ $trade->user->name }}</small> --}}
                     </div>
                     <div class="d-flex justify-content-around mb-2">
                         <a href="{{ route('admin.trades.show', $trade->id) }}" class="btn btn-primary">Info</a>

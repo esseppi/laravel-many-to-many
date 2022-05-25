@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 
 use App\Coin;
 use App\User;
+use App\Wallet;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class TradeController extends Controller
      */
     public function index(Request $request)
     {
-        $trades = Trade::where('1 = 1');
+        // $trades = Trade::all();
+        $trades = Trade::paginate(20);
+
 
         if ($request->baseCoin) {
             $trades->where('baseCoin_id', $request->baseCoin);
@@ -38,9 +41,8 @@ class TradeController extends Controller
             $trades->where('user_id', $request->users);
         }
 
-        $trades = $trades->paginate(20);
+        // $trades = $trades->paginate(20);
 
-        // $trades = Trade::paginate(50);
 
         $coins = Coin::all();
         $users = User::all();
@@ -51,13 +53,17 @@ class TradeController extends Controller
             'users'         => $users,
             'request'       => $request
         ]);
+
+        // $trades = Trade::where('user_id', Auth::user()->id)->paginate(25);
+
     }
-    // dd($request);
 
 
     public function myTrades()
     {
-        $trades = Trade::where('user_id', Auth::user()->id)->paginate(25);
+        $trades = Trade::where('wallet_id', Auth::user()->id)->paginate(25);
+
+        // $trades = Trade::where('user_id', Auth::user()->id)->paginate(25);
         return view('admin.trades.myTrades', compact('trades'));
     }
 
@@ -85,7 +91,8 @@ class TradeController extends Controller
 
         // dd($request);
         $this->validationRules = [
-            // 'user_id'              => 'required|min:1|max:200',
+            // 'user_id'              => '',
+            // 'wallet_id'          => 'required|min:1|max:200',
             'baseCoin_id'          => 'required|different:foreignCoin_id|min:1|max:200',
             'foreignCoin_id'       => 'required|min:1|max:200',
             'slug'                 => 'required|unique:trades|max:250',
@@ -99,7 +106,7 @@ class TradeController extends Controller
         $request->validate($this->validationRules);
 
         $newTrade = $request->all() + [
-            'user_id' => Auth::user()->id,
+            'wallet_id' => Auth::user()->id,
         ];
 
         $trade = Trade::create($newTrade);
