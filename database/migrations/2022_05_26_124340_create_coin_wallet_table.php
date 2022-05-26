@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWalletCoinTable extends Migration
+class CreateCoinWalletTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWalletCoinTable extends Migration
      */
     public function up()
     {
-        Schema::create('wallet_coin', function (Blueprint $table) {
+        Schema::create('coin_wallet', function (Blueprint $table) {
             $table->unsignedBigInteger('wallet_id');
             $table->foreign('wallet_id')->references('id')->on('wallets');
 
@@ -36,6 +36,6 @@ class CreateWalletCoinTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallet_coin');
+        Schema::dropIfExists('coin_wallet');
     }
 }

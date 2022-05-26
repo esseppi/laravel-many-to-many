@@ -5,14 +5,13 @@ use App\Trade;
 use App\Wallet;
 use Illuminate\Database\Seeder;
 
-class WalletCoinSeeder extends Seeder
+class CoinWalletSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-
     public function run()
     {
         $wallets = Wallet::all();
@@ -32,14 +31,4 @@ class WalletCoinSeeder extends Seeder
             }
         }
     }
-    // public function run()
-    // {
-    //     $posts = Post::all();
-
-    //     foreach ($posts as $post) {
-    //         $postTags = Tag::inRandomOrder()->limit(rand(0, 5))->get();
-
-    //         $post->tags()->attach($postTags->pluck('id')->all());
-    //     }
-    // }
 }
