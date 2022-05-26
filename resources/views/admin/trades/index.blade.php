@@ -15,6 +15,7 @@
                     @endforeach
                 </select>
             </div>
+
             <div class="col-md-4">
                 <select class="form-select" aria-label="Default select example" name="foreignCoin" id="foreignCoin">
                     <option value="" selected>Select a foreign coin</option>
@@ -79,11 +80,11 @@
                     </div>
                     <div class="d-flex justify-content-around mb-2">
                         <a href="{{ route('admin.trades.show', $trade->id) }}" class="btn btn-primary">Info</a>
-                        @if (Auth::user()->id === $trade->user_id)
+                        @if (Auth::user()->id === $trade->wallet_id)
                             <a href="{{ route('admin.trades.edit', $trade->id) }}" class="btn btn-secondary">Edit</a>
                         @endif
                         {{-- trigger delete button --}}
-                        @if (Auth::user()->id === $trade->user_id)
+                        @if (Auth::user()->id === $trade->wallet_id)
                             <button type="button" class="btn btn-danger deleteButton" data-bs-toggle="modal"
                                 data-id="{{ $trade->id }}" data-base="{{ route('admin.trades.index') }}"
                                 data-bs-target="#staticBackdrop">

@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(WalletSeeder::class);
         $this->call(CoinSeeder::class);
         $this->call(TradeSeeder::class);
+        $this->call(WalletCoinSeeder::class);
     }
 }

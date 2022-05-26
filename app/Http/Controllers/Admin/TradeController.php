@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Trade;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Faker\Generator as Faker;
 
+use App\Trade;
 use App\Coin;
 use App\User;
-use App\Wallet;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -24,7 +22,7 @@ class TradeController extends Controller
     public function index(Request $request)
     {
         // $trades = Trade::all();
-        $trades = Trade::paginate(20);
+        $trades = Trade::whereRaw('1 = 1');
 
 
         if ($request->baseCoin) {
@@ -34,14 +32,14 @@ class TradeController extends Controller
             $trades->where('foreignCoin_id', $request->foreignCoin);
         }
         if ($request->date) {
-            $trades->where('foreignCoin_id', $request->dates);
+            $trades->where('date', $request->date);
         }
 
         if ($request->users) {
-            $trades->where('user_id', $request->users);
+            $trades->where('wallet_id', $request->users);
         }
 
-        // $trades = $trades->paginate(20);
+        $trades = $trades->paginate(20);
 
 
         $coins = Coin::all();
@@ -53,18 +51,36 @@ class TradeController extends Controller
             'users'         => $users,
             'request'       => $request
         ]);
-
-        // $trades = Trade::where('user_id', Auth::user()->id)->paginate(25);
-
     }
 
 
-    public function myTrades()
+    public function myTrades(Request $request)
     {
-        $trades = Trade::where('wallet_id', Auth::user()->id)->paginate(25);
+        $trades = Trade::whereRaw('1 = 1');
+        $trades = $trades->where('wallet_id', Auth::user()->id);
 
-        // $trades = Trade::where('user_id', Auth::user()->id)->paginate(25);
-        return view('admin.trades.myTrades', compact('trades'));
+        if ($request->baseCoin) {
+            $trades->where('baseCoin_id', $request->baseCoin);
+        }
+        if ($request->foreignCoin) {
+            $trades->where('foreignCoin_id', $request->foreignCoin);
+        }
+        if ($request->date) {
+            $trades->where('date', $request->date);
+        }
+
+        $trades = $trades->paginate(20);
+
+
+        $coins = Coin::all();
+        $users = User::all();
+
+        return view('admin.trades.myTrades', [
+            'coins'         => $coins,
+            'trades'        => $trades,
+            'users'         => $users,
+            'request'       => $request
+        ]);
     }
 
     /**

@@ -12,6 +12,7 @@
                 <li><a href="{{ route('admin.trades.index') }}" class="nav-link px-2 text-white">All Trades</a></li>
                 <li><a href="{{ route('admin.trades.create') }}" class="nav-link px-2 text-white">New Trade</a></li>
                 <li><a href="{{ route('admin.trades.myTrades') }}" class="nav-link px-2 text-white">My trades</a></li>
+                <li><a href="{{ route('admin.wallets.index') }}" class="nav-link px-2 text-white">All wallets</a></li>
 
                 {{-- <li><a href="{{ route('admin.coins.edit') }}" class="nav-link px-2 text-white">Edit</a></li> --}}
             </ul>

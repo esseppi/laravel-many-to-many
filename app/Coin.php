@@ -44,4 +44,8 @@ class Coin extends Model
     {
         return $this->hasMany('App\Trade', 'coin_id');
     }
+    public function wallet()
+    {
+        return $this->belongsToMany(Wallet::class, 'wallet_id');
+    }
 }
